@@ -6,27 +6,27 @@ class UserManagement:
     def __init__(self, db):
         self.db = db
 
-        # Create the main User Management window
+        # create the main User Management window
         self.window = tk.Toplevel()
         self.window.title("User Management")
         self.window.geometry("500x400")
 
-        # Title Label
+        # title label
         tk.Label(self.window, text="User Management", font=("Arial", 16)).pack(pady=10)
 
-        # Buttons for user operations
+        # buttons for user operations
         tk.Button(self.window, text="Add User", width=20, command=self.add_user_form).pack(pady=5)
         tk.Button(self.window, text="Update User", width=20, command=self.update_user_form).pack(pady=5)
         tk.Button(self.window, text="Delete User", width=20, command=self.delete_user_form).pack(pady=5)
         tk.Button(self.window, text="View Users", width=20, command=self.view_users).pack(pady=5)
 
     def add_user_form(self):
-        """GUI form to add a new user."""
+        """GUI form to add a new user"""
         add_window = tk.Toplevel(self.window)
         add_window.title("Add User")
         add_window.geometry("300x250")
 
-        # Form Fields
+        # form fields
         tk.Label(add_window, text="Name:").pack(pady=5)
         name_entry = tk.Entry(add_window)
         name_entry.pack(pady=5)
@@ -39,7 +39,7 @@ class UserManagement:
         card_id_entry = tk.Entry(add_window)
         card_id_entry.pack(pady=5)
 
-        # Save Button
+        # save button
         def save_user():
             name = name_entry.get()
             role_id = role_id_entry.get()
@@ -57,11 +57,11 @@ class UserManagement:
         tk.Button(add_window, text="Save", command=save_user).pack(pady=10)
 
     def update_user_form(self):
-        """GUI form to update a user."""
+        """GUI form to update a user"""
         messagebox.showinfo("Update User", "Update User functionality is under development.")
 
     def delete_user_form(self):
-        """GUI form to delete a user."""
+        """GUI form to delete a user"""
         delete_window = tk.Toplevel(self.window)
         delete_window.title("Delete User")
         delete_window.geometry("300x150")
@@ -85,7 +85,7 @@ class UserManagement:
         tk.Button(delete_window, text="Delete", command=delete_user).pack(pady=10)
 
     def view_users(self):
-        """Fetch and display all users in a new window."""
+        """fetch and display all users in a new window"""
         view_window = tk.Toplevel(self.window)
         view_window.title("View Users")
         view_window.geometry("500x400")
@@ -113,7 +113,7 @@ class UserManagement:
         except Exception as e:
             messagebox.showerror("Error", f"Failed to fetch users: {e}")
 
-    # Existing methods remain unchanged for database operations
+    # existing methods remain unchanged for database operations
     def add_user(self, name, role_id, card_id):
         query = "INSERT INTO Users (name, roleID, cardID) VALUES (?, ?, ?)"
         try:

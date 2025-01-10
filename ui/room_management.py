@@ -9,15 +9,15 @@ class RoomManagement:
         #print(f"debug: RoomManagement received db: {db}")
         #if not isinstance(db, Database):
             #raise TypeError(f"Expected Database instance, got {type(db)}")
-        self.db = db  # Use the shared Database instance
         #print(f"RoomManagement using db: {self.db}")
+        self.db = db
         self.window = tk.Toplevel()
         self.window.title("Room Management")
         self.window.geometry("400x300")
 
         tk.Label(self.window, text="Room Management", font=("Arial", 16)).pack(pady=10)
 
-        # Buttons for room operations
+        # buttons for room operations
         tk.Button(self.window, text="Add Room", width=20, command=self.add_room).pack(pady=5)
         tk.Button(self.window, text="Update Room", width=20, command=self.update_room).pack(pady=5)
         tk.Button(self.window, text="Delete Room", width=20, command=self.delete_room).pack(pady=5)
@@ -30,12 +30,12 @@ class RoomManagement:
     def add_room(self):
         # debug: checking db connection
         #print(f"debug: add_room using db: {self.db}")  
-        """Open a form to add a new room."""
+        """open a form to add new room"""
         add_window = tk.Toplevel(self.window)
         add_window.title("Add Room")
         add_window.geometry("300x200")
 
-        # Form fields
+        # form fields
         tk.Label(add_window, text="Room Type:").pack(pady=5)
         room_type_entry = tk.Entry(add_window)
         room_type_entry.pack(pady=5)
@@ -45,7 +45,7 @@ class RoomManagement:
         room_state_entry.pack(pady=5)
 
         def save_room():
-            """Save the new room to the database."""
+            """save the new room to database"""
             room_type = room_type_entry.get().strip()
             room_state = room_state_entry.get().strip().upper()
 
@@ -62,12 +62,12 @@ class RoomManagement:
         tk.Button(add_window, text="Save Room", command=save_room).pack(pady=10)
 
     def update_room(self):
-    	"""GUI form to update a room."""
+    	"""GUI form to update a room"""
     	update_window = tk.Toplevel(self.window)
     	update_window.title("Update Room")
     	update_window.geometry("300x250")
 
-    	# Form Fields
+    	# form Fields
     	tk.Label(update_window, text="Room ID:").pack(pady=5)
     	room_id_entry = tk.Entry(update_window)
     	room_id_entry.pack(pady=5)
@@ -111,7 +111,7 @@ class RoomManagement:
     	tk.Button(update_window, text="Update Room", command=save_update).pack(pady=10)
 
     def delete_room(self):
-    	"""GUI form to delete a room."""
+    	"""GUI form to delete a room"""
     	delete_window = tk.Toplevel(self.window)
     	delete_window.title("Delete Room")
     	delete_window.geometry("300x150")
@@ -135,7 +135,7 @@ class RoomManagement:
     	tk.Button(delete_window, text="Delete Room", command=confirm_delete).pack(pady=10)
     
     def change_room_state(self):
-    	"""GUI form to change room state."""
+    	"""GUI form to change room state"""
     	state_window = tk.Toplevel(self.window)
     	state_window.title("Change Room State")
     	state_window.geometry("300x200")
@@ -167,7 +167,7 @@ class RoomManagement:
     def view_rooms(self):
         # debug: checking db connection
         #print(f"debug: view_rooms using db: {self.db}") 
-        """Fetch and display all rooms in a new window."""
+        """fetch and display all rooms in a new window"""
         try:
             rooms = self.db.fetch_all("SELECT * FROM Rooms")
             view_window = tk.Toplevel(self.window)

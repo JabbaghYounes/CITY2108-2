@@ -7,4 +7,5 @@ python3-tk - python GUI library
 
 testing tools
 python3-pytest
-selenium
+pythonguitst
+xdotool

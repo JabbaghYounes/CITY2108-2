@@ -9,16 +9,15 @@ class LogManager:
         os.makedirs(self.log_directory, exist_ok=True)
         print(f"Logs directory: {os.path.abspath(self.log_directory)}")
 
-    def get_log_file_path(self):
+    def get_log_file_path(self):        
         date_str = datetime.now().strftime("%Y-%m-%d")
-        #log_file_path = os.path.join(self.log_directory, f"room_access_log_{date_str}.txt")
+        log_file_path = os.path.join(self.log_directory, f"room_access_log_{date_str}.txt")
         print(f"Log file path: {os.path.abspath(log_file_path)}")
-        #return log_file_path
-        return os.path.join(self.log_directory, f"room_access_log_{date_str}.txt")
+        return log_file_path
 	
     def write_log(self, user_id, room_id, access_status, room_state):
-        os.makedirs(self.log_directory, exist_ok=True)  # Ensure the directory exists
-        log_file_path = self.get_log_file_path()  # Automatically uses "./logs"
+        os.makedirs(self.log_directory, exist_ok=True)
+        log_file_path = self.get_log_file_path()
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_entry = f"{timestamp}, User ID: {user_id}, Room ID: {room_id}, Access: {access_status}, Room State: {room_state}\n"
         
@@ -26,21 +25,8 @@ class LogManager:
             log_file.write(log_entry)
         print("Log entry added:", log_entry.strip())
 
-#    def fetch_logs(self):
-#        log_file_path = self.get_log_file_path()
-#        try:
-#            with open(log_file_path, "r") as log_file:
-#                logs = log_file.readlines()
-#            return logs
-#        except FileNotFoundError:
-#            print("No logs available for today.")
-#            return []
-#        except Exception as e:
-#            print(f"Error reading log file: {e}")
-#            return []
-
     def fetch_logs(self, date=None):
-        """Fetch logs for the specified date or today's logs if no date is provided."""
+        """fetch logs for the specified date, grab current log abscent specification"""
         if date is None:
             date = datetime.now()
 
@@ -58,7 +44,7 @@ class LogManager:
             return ""
 
     def filter_logs(self, user_id=None, room_id=None, access_status=None):
-        """Filter logs by user ID, room ID, or access status."""
+        """filter logs by user ID, room ID, or access status"""
         logs = self.fetch_logs()
         if not logs:
             return []
@@ -74,7 +60,7 @@ class LogManager:
         return filtered_logs
 
     def archive_old_logs(self, retention_days=30):
-        """Archive logs older than retention_days."""
+        """archive older logs"""
         archive_dir = os.path.join(self.log_directory, "archive")
         os.makedirs(archive_dir, exist_ok=True)
         print(f"Archive directory: {os.path.abspath(archive_dir)}")

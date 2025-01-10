@@ -4,17 +4,17 @@ from database.database import Database
 
 
 if __name__ == "__main__":
-    # Initialize the main Tkinter window
+    # setup main tkinter window
     root = tk.Tk()
 
-    # Initialize the shared database instance
+    # setup shared database instance
     db = Database("access_control.db")
 
-    # Launch the main UI
+    # launch main gui
     app = MainUI(root, db)
 
-    # Run the main Tkinter loop
+    # run main tkinter loop
     root.mainloop()
 
-    # Close the database connection when the app exits
+    # close db connection when exit
     db.close()

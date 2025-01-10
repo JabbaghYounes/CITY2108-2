@@ -1,11 +1,11 @@
--- Create Roles table
+-- create roles table
 CREATE TABLE IF NOT EXISTS Roles (
     roleID INTEGER PRIMARY KEY AUTOINCREMENT,
     roleName TEXT UNIQUE NOT NULL,
     accessTimes TEXT NOT NULL
 );
 
--- Create Users table
+-- create users table
 CREATE TABLE IF NOT EXISTS Users (
     userID INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -14,14 +14,14 @@ CREATE TABLE IF NOT EXISTS Users (
     FOREIGN KEY (roleID) REFERENCES Roles(roleID)
 );
 
--- Create Rooms table
+-- create rooms table
 CREATE TABLE IF NOT EXISTS Rooms (
     roomID INTEGER PRIMARY KEY AUTOINCREMENT,
     type TEXT NOT NULL,
     state TEXT NOT NULL DEFAULT 'NORMAL'
 );
 
--- Create Logs table
+-- create logs table
 CREATE TABLE IF NOT EXISTS Logs (
     logID INTEGER PRIMARY KEY AUTOINCREMENT,
     date TEXT NOT NULL,

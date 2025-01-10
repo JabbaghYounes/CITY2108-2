@@ -1,4 +1,4 @@
--- Insert initial roles
+-- insert test roles
 INSERT INTO Roles (roleName, accessTimes)
 VALUES 
 ('Staff Member', '{"start": "05:30:00", "end": "23:59:59"}'),
@@ -9,7 +9,7 @@ VALUES
 ('Security', '{"start": "00:00:00", "end": "23:59:59"}'),
 ('Emergency Responder', 'N/A');
 
--- Insert initial users
+-- insert test users
 INSERT INTO Users (name, roleID, cardID)
 VALUES
 ('Alice Johnson', 1, 'STAFF001'),
@@ -20,7 +20,7 @@ VALUES
 ('Frank Security', 6, 'SECURITY001'),
 ('Grace Responder', 7, 'RESPONDER001');
 
--- Insert initial rooms
+-- insert test rooms
 INSERT INTO Rooms (type, state)
 VALUES
 ('Lecture Hall', 'NORMAL'),

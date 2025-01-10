@@ -8,12 +8,12 @@ class SimulateAccess:
         self.db = db  # Use the shared Database instance
 
     def open_simulate_access_window(self):
-        """Open the Simulate Access window."""
+        """open the Simulate Access window"""
         simulate_window = tk.Toplevel()
         simulate_window.title("Simulate Access")
         simulate_window.geometry("400x300")
 
-        # Input Fields
+        # input fields
         tk.Label(simulate_window, text="User Card ID:").pack(pady=5)
         card_id_entry = tk.Entry(simulate_window)
         card_id_entry.pack(pady=5)
@@ -28,7 +28,7 @@ class SimulateAccess:
 
             if card_id and room_id:
                 try:
-                    # Fetch user and room details
+                    # fetch user and room details
                     user_query = """
                     SELECT u.name, r.roleName
                     FROM Users u
@@ -43,7 +43,7 @@ class SimulateAccess:
                         user_name, user_role = user[0]
                         room_type, room_state = room[0]
 
-                        # Access Logic
+                        # access logic
                         access_granted = False
                         if room_state == "NORMAL":
                             if user_role in {"Manager", "Security"}:
@@ -54,11 +54,11 @@ class SimulateAccess:
                             if user_role in {"Security", "Emergency Responder"}:
                                 access_granted = True
 
-                        # Write to log
+                        # write to log
                         log_entry = f"{user_name} ({card_id}) attempted to access Room {room_id} ({room_type}) - {'Granted' if access_granted else 'Denied'}\n"
                         self.write_log(log_entry)
 
-                        # Display Result
+                        # display result
                         messagebox.showinfo("Access Simulation", log_entry)
                     else:
                         messagebox.showerror("Error", "Invalid Card ID or Room ID.")
@@ -70,7 +70,7 @@ class SimulateAccess:
         tk.Button(simulate_window, text="Simulate Access", command=process_simulation).pack(pady=10)
 
     def write_log(self, log_entry):
-        """Write a log entry to the daily log file."""
+        """write a log entry to daily log file"""
         log_filename = f"room_access_log_{datetime.now().strftime('%Y-%m-%d')}.txt"
         try:
             with open(log_filename, "a") as log_file:
