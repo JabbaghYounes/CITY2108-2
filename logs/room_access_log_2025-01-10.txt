@@ -1,0 +1,4 @@
+Alice Johnson (STAFF001) attempted to access Room 1 (Lecture Hall) - Granted
+Bob Smith (STUDENT001) attempted to access Room 3 (Staff Room) - Denied
+Alice Johnson (STAFF001) attempted to access Room 4 (Secure Room) - Denied
+Alice Johnson (STAFF001) attempted to access Room 2 (Teaching Room) - Granted
